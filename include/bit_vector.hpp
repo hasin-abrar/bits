@@ -341,6 +341,16 @@ struct bit_vector  //
         visit_impl(visitor, *this);
     }
 
+    void save(std::ostream& os) const {
+        essentials::save_pod(os, m_num_bits);
+        essentials::save_vec(os, m_data);
+    }
+
+    void load(std::istream& is) {
+        essentials::load_pod(is, m_num_bits);
+        essentials::load_vec(is, m_data);
+    }
+
 protected:
     uint64_t m_num_bits;
     std::vector<uint64_t> m_data;

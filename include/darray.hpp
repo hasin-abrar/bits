@@ -143,6 +143,20 @@ struct darray {
         visit_impl(visitor, *this);
     }
 
+    void save(std::ostream& os) const {
+        essentials::save_pod(os, m_positions);
+        essentials::save_vec(os, m_block_inventory);
+        essentials::save_vec(os, m_subblock_inventory);
+        essentials::save_vec(os, m_overflow_positions);
+    }
+
+    void load(std::istream& is) {
+        essentials::load_pod(is, m_positions);
+        essentials::load_vec(is, m_block_inventory);
+        essentials::load_vec(is, m_subblock_inventory);
+        essentials::load_vec(is, m_overflow_positions);
+    }
+
 protected:
     uint64_t m_positions;
     std::vector<int64_t> m_block_inventory;

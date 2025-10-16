@@ -309,6 +309,22 @@ struct elias_fano {
         visit_impl(visitor, *this);
     }
 
+    void save(std::ostream& os) const {
+        essentials::save_pod(os, m_back);
+        m_high_bits.save(os);
+        m_high_bits_d1.save(os);
+        m_high_bits_d0.save(os);
+        m_low_bits.save(os);
+    }
+
+    void load(std::istream& is) {
+        essentials::load_pod(is, m_back);
+        m_high_bits.load(is);
+        m_high_bits_d1.load(is);
+        m_high_bits_d0.load(is);
+        m_low_bits.load(is);
+    }
+
 private:
     uint64_t m_back;
     bit_vector m_high_bits;
