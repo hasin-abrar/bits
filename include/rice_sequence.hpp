@@ -55,6 +55,18 @@ struct rice_sequence {
         visit_impl(visitor, *this);
     }
 
+    void save(std::ostream& os) const {
+        m_high_bits.save(os);
+        m_high_bits_d1.save(os);
+        m_low_bits.save(os);
+    }
+
+    void load(std::istream& is) {
+        m_high_bits.load(is);
+        m_high_bits_d1.load(is);
+        m_low_bits.load(is);
+    }
+
 private:
     template <typename Visitor, typename T>
     static void visit_impl(Visitor& visitor, T&& t) {
